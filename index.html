@@ -1,63 +1,94 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Keeler Kanine Services — Care for Your Dog When You Can’t</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Keeler Kanine Services</title>
   <style>
     body {
       margin: 0;
-      font-family: 'Inter', sans-serif;
+      font-family: 'Inter', Arial, sans-serif;
       color: #1a1a1a;
       background: #f7f8fc;
     }
     header {
-      background: linear-gradient(135deg, #4a90e2, #50c9c3);
+      background: linear-gradient(135deg, #111827, #2563eb);
       color: white;
       text-align: center;
-      padding: 80px 20px;
+      padding: 70px 20px;
     }
     header h1 {
-      font-size: 3rem;
+      font-size: clamp(2rem, 5vw, 3rem);
       margin-bottom: 12px;
     }
     header p {
-      font-size: 1.2rem;
+      font-size: 1.1rem;
       margin-bottom: 24px;
       opacity: 0.9;
     }
     .btn-primary {
       background: #ffffff;
-      color: #4a90e2;
+      color: #2563eb;
       padding: 14px 30px;
       text-decoration: none;
       font-weight: bold;
-      border-radius: 8px;
-      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+      border-radius: 10px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+      display: inline-block;
     }
     section {
-      padding: 60px 20px;
+      padding: 50px 20px;
       max-width: 1100px;
       margin: auto;
     }
     .features {
       display: grid;
       gap: 24px;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     }
     .card {
       background: white;
-      padding: 24px;
-      border-radius: 12px;
+      padding: 26px;
+      border-radius: 16px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.08);
     }
     .card h3 {
       margin-bottom: 8px;
-      color: #4a90e2;
+      color: #2563eb;
+    }
+    form {
+      background: white;
+      padding: 28px;
+      border-radius: 16px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      max-width: 600px;
+      margin: auto;
+    }
+    label {
+      display: block;
+      margin-top: 14px;
+      font-weight: 600;
+    }
+    input, textarea, button {
+      width: 100%;
+      margin-top: 6px;
+      padding: 12px;
+      border-radius: 8px;
+      border: 1px solid #ddd;
+      font-size: 1rem;
+    }
+    textarea { resize: vertical; }
+    button {
+      background: #2563eb;
+      color: white;
+      border: none;
+      margin-top: 18px;
+      cursor: pointer;
+      font-weight: bold;
     }
     footer {
       text-align: center;
-      padding: 20px;
+      padding: 25px;
       font-size: 0.9rem;
       opacity: 0.7;
     }
@@ -67,36 +98,61 @@
 
 <header>
   <h1>Keeler Kanine Services</h1>
-  <p>Temporary care for your dog when life gets unpredictable.</p>
-  <a href="#get-started" class="btn-primary">Get Help Now</a>
+  <p>Emergency housing and rehousing for dogs when owners can’t be there.</p>
+  <a href="#intake" class="btn-primary">Request Help</a>
 </header>
 
 <section>
-  <h2 style="text-align:center; margin-bottom:32px;">What We Offer</h2>
+  <h2 style="text-align:center; margin-bottom:32px;">What We Do</h2>
   <div class="features">
     <div class="card">
-      <h3>Emergency Dog Care</h3>
-      <p>Immediate boarding for your dog when you’re detained without a caretaker available.</p>
+      <h3>Emergency Placement</h3>
+      <p>Immediate, safe care for dogs when owners are unexpectedly detained.</p>
     </div>
     <div class="card">
-      <h3>Safe Rehousing</h3>
-      <p>We help find loving foster homes or long-term boarding after short stays.</p>
+      <h3>Temporary & Long-Term Care</h3>
+      <p>Short stays, foster placement, and rehousing solutions when needed.</p>
     </div>
     <div class="card">
-      <h3>Support & Updates</h3>
-      <p>Stay connected and informed about your dog’s well-being during the stay.</p>
+      <h3>Owner Communication</h3>
+      <p>We keep you updated on your dog’s well-being while in our care.</p>
     </div>
   </div>
 </section>
 
-<section id="get-started">
-  <h2 style="text-align:center; margin-bottom:24px;">How to Get Started</h2>
-  <p style="text-align:center;">Call or text us 24/7 — we handle everything with care and transparency.</p>
-  <p style="text-align:center; font-size:1.2rem; font-weight:bold;">📞 <span style="color:#4a90e2;">(437-869-6893)</span></p>
+<section id="intake">
+  <h2 style="text-align:center; margin-bottom:20px;">Intake Request Form</h2>
+  <p style="text-align:center; margin-bottom:30px;">Fill this out and we will contact you immediately.</p>
+
+  <form action="https://formspree.io/f/yourFormID" method="POST" enctype="multipart/form-data">
+
+    <label>Owner Name</label>
+    <input type="text" name="owner_name" required>
+
+    <label>Phone Number</label>
+    <input type="tel" name="phone" required>
+
+    <label>Email</label>
+    <input type="email" name="email" required>
+
+    <label>Dog Name & Breed</label>
+    <input type="text" name="dog_info" required>
+
+    <label>How urgent is the situation?</label>
+    <input type="text" name="urgency" placeholder="Immediate / Today / Soon" required>
+
+    <label>Upload Dog Photo</label>
+    <input type="file" name="dog_photo" accept="image/*">
+
+    <label>Additional Details</label>
+    <textarea name="details" rows="4"></textarea>
+
+    <button type="submit">Submit Request</button>
+  </form>
 </section>
 
 <footer>
-  © 2026 Keeler Kanine Services — Making sure nothing comes between you and your best friend.
+  © 2026 Keeler Kanine Services — Protecting your best friend when life gets hard.
 </footer>
 
 </body>
