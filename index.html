@@ -223,30 +223,46 @@
   <h2 style="text-align:center; margin-bottom:20px;">Intake Request Form</h2>
   <p style="text-align:center; margin-bottom:30px;">Fill this out and we will contact you immediately.</p>
 
-  <form action="https://formspree.io/f/xwvvvvlw" method="POST" enctype="multipart/form-data">
-    <label>Owner Name</label>
-    <input type="text" name="owner_name" required>
+  <form action="https://formspree.io/f/xwvvvvlw" method="POST" enctype="multipart/form-data" class="dog-request-form">
+  
+  <label>Owner Name</label>
+  <input type="text" name="owner_name" required>
 
-    <label>Phone Number</label>
-    <input type="tel" name="phone" required>
+  <label>Phone Number</label>
+  <input type="tel" name="phone" required>
 
-    <label>Email</label>
-    <input type="email" name="email" required>
+  <label>Email</label>
+  <input type="email" name="email" required>
 
-    <label>Dog Name & Breed</label>
-    <input type="text" name="dog_info" required>
+  <label>Dog Name & Breed</label>
+  <input type="text" name="dog_info" required>
 
-    <label>How urgent is the situation?</label>
-    <input type="text" name="urgency" placeholder="Immediate / Today / Soon" required>
+  <label>Dog Age</label>
+  <input type="number" name="dog_age" min="0" placeholder="Years" required>
 
-    <label>Upload Dog Photo</label>
-    <input type="file" name="dog_photo" accept="image/*">
+  <label>Medications</label>
+  <textarea name="medications" rows="2" placeholder="List any medications your dog is taking"></textarea>
 
-    <label>Additional Details</label>
-    <textarea name="details" rows="4"></textarea>
+  <label>Special Diet</label>
+  <textarea name="special_diet" rows="2" placeholder="Describe any dietary needs or restrictions"></textarea>
 
-    <button type="submit">Submit Request</button>
-  </form>
+  <label>How urgent is the situation?</label>
+  <select name="urgency" required>
+    <option value="">Select urgency</option>
+    <option value="Immediate">Immediate</option>
+    <option value="Today">Today</option>
+    <option value="Soon">Soon</option>
+  </select>
+
+  <label>Upload Dog Photo <small>(optional)</small></label>
+  <input type="file" name="dog_photo" accept="image/*">
+
+  <label>Additional Details</label>
+  <textarea name="details" rows="4" placeholder="Anything else we should know"></textarea>
+
+  <button type="submit">Submit Request</button>
+</form>
+
 </section>
 
 <footer>
