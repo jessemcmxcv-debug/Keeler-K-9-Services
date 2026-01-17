@@ -5,95 +5,122 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Keeler K-9 Services</title>
   <style>
+    :root {
+      --primary: #0E0F13;
+      --accent: #E87C22;
+      --highlight: #EFE3C8;
+      --support: #C98B4B;
+    }
+
     body {
       margin: 0;
       font-family: 'Inter', Arial, sans-serif;
-      color: #1a1a1a;
-      background: #f7f8fc;
+      color: var(--primary);
+      background: var(--highlight);
     }
+
     header {
-      background: linear-gradient(135deg, #111827, #2563eb);
-      color: white;
+      background: linear-gradient(135deg, var(--primary), #1a1c24);
+      color: var(--highlight);
       padding: 70px 20px 40px;
       position: relative;
     }
+
     .logo {
       position: absolute;
       top: 20px;
       left: 20px;
       height: 300px;
     }
+
     header .inner {
       max-width: 1100px;
       margin: auto;
       text-align: center;
     }
+
     header h1 {
       font-size: clamp(2rem, 5vw, 3rem);
       margin-bottom: 12px;
     }
+
     header p {
       font-size: 1.1rem;
       margin-bottom: 24px;
       opacity: 0.9;
     }
+
     .btn-primary {
-      background: #ffffff;
-      color: #2563eb;
+      background: var(--accent);
+      color: var(--primary);
       padding: 14px 30px;
       text-decoration: none;
       font-weight: bold;
       border-radius: 10px;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+      box-shadow: 0 6px 18px rgba(0,0,0,0.25);
       display: inline-block;
     }
+
     .slider {
       max-width: 300px;
       margin: 30px auto 20px;
       overflow: hidden;
       border-radius: 18px;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+      box-shadow: 0 6px 18px rgba(0,0,0,0.35);
+      border: 3px solid var(--support);
     }
+
     .slide {
       width: 100%;
       display: none;
     }
+
     .slide.active {
       display: block;
     }
+
     section {
       padding: 50px 20px;
       max-width: 1100px;
       margin: auto;
     }
+
     .features {
       display: grid;
       gap: 24px;
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     }
+
     .card {
       background: white;
       padding: 26px;
       border-radius: 16px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+      border-top: 4px solid var(--accent);
     }
+
     .card h3 {
       margin-bottom: 8px;
-      color: #2563eb;
+      color: var(--accent);
     }
+
     form {
       background: white;
       padding: 28px;
       border-radius: 16px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.12);
       max-width: 600px;
       margin: auto;
+      border-top: 4px solid var(--support);
     }
+
     label {
       display: block;
       margin-top: 14px;
       font-weight: 600;
+      color: var(--primary);
     }
+
     input, textarea, button {
       width: 100%;
       margin-top: 6px;
@@ -102,42 +129,50 @@
       border: 1px solid #ddd;
       font-size: 1rem;
     }
+
     textarea { resize: vertical; }
+
     button {
-      background: #2563eb;
-      color: white;
+      background: var(--accent);
+      color: var(--primary);
       border: none;
       margin-top: 18px;
       cursor: pointer;
       font-weight: bold;
     }
+
     footer {
       position: relative;
       text-align: center;
       padding: 40px 20px;
       font-size: 0.9rem;
-      opacity: 0.8;
+      background: var(--primary);
+      color: var(--highlight);
     }
+
     .footer-logo {
       position: absolute;
       right: 20px;
       bottom: 20px;
-      height: 70px;
-      opacity: 0.8;
+      height: 45px;
+      opacity: 0.85;
+    }
+
+    @media (max-width: 600px) {
+      .logo { height: 42px; }
+      .footer-logo { height: 34px; }
     }
   </style>
 </head>
 <body>
 
 <header>
-  <!-- TOP LEFT LOGO -->
   <img src="kk9logo.png" class="logo" alt="Keeler Kanine Logo">
 
   <div class="inner">
     <h1>Keeler K-9 Services</h1>
     <p>Emergency housing and rehousing for dogs when owners can’t be there.</p>
 
-    <!-- SLIDER -->
     <div class="slider">
       <img src="angel1.jpeg" class="slide active">
       <img src="angel2.jpeg" class="slide">
@@ -170,7 +205,7 @@
   <h2 style="text-align:center; margin-bottom:20px;">Intake Request Form</h2>
   <p style="text-align:center; margin-bottom:30px;">Fill this out and we will contact you immediately.</p>
 
-  <form action="https://formspree.io/f/yourFormID" method="POST" enctype="multipart/form-data">
+  <form action="https://formspree.io/f/xwvvvvlw" method="POST" enctype="multipart/form-data">
     <label>Owner Name</label>
     <input type="text" name="owner_name" required>
 
@@ -198,8 +233,6 @@
 
 <footer>
   © 2026 Keeler K-9 Services — Protecting your best friend when life gets hard.
-
-  <!-- BOTTOM RIGHT LOGO -->
   <img src="kk9logo.png" class="footer-logo" alt="Keeler Kanine Logo">
 </footer>
 
