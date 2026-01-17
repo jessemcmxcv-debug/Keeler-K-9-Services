@@ -1,1 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Keeler Kanine Services</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- SAME STYLES EVERY PAGE -->
+  <style>
+    :root {
+      --primary: #0E0F13;
+      --accent: #E87C22;
+      --highlight: #EFE3C8;
+      --support: #C98B4B;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: var(--primary);
+      color: var(--highlight);
+    }
+
+    header {
+      background: linear-gradient(to bottom, #14151a, #0E0F13);
+      padding: 90px 20px 40px;
+      position: relative;
+      text-align: center;
+    }
+
+    .logo {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      height: 60px;
+    }
+
+    @media (max-width: 600px) {
+      .logo {
+        left: 50%;
+        transform: translateX(-50%);
+        height: 45px;
+      }
+    }
+
+    .nav {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      z-index: 50;
+    }
+
+    .menu-btn {
+      background: var(--accent);
+      border: none;
+      padding: 10px 16px;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .menu {
+      display: none;
+      position: absolute;
+      right: 0;
+      margin-top: 10px;
+      background: #121318;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .menu a {
+      display: block;
+      padding: 12px 18px;
+      color: var(--highlight);
+      text-decoration: none;
+    }
+
+    .menu a:hover {
+      background: var(--support);
+    }
+
+    main {
+      padding: 40px 20px;
+      max-width: 900px;
+      margin: auto;
+    }
+  </style>
+</head>
+<body>
 
