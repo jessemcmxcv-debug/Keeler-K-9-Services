@@ -223,45 +223,53 @@
   <h2 style="text-align:center; margin-bottom:20px;">Intake Request Form</h2>
   <p style="text-align:center; margin-bottom:30px;">Fill this out and we will contact you immediately.</p>
 
-  <form action="https://formspree.io/f/xwvvvvlw" method="POST" enctype="multipart/form-data" class="dog-request-form">
-  
-  <label>Owner Name</label>
-  <input type="text" name="owner_name" required>
+  <form id="intake-form" enctype="multipart/form-data">
 
-  <label>Phone Number</label>
-  <input type="tel" name="phone" required>
+  <div class="form-group">
+    <input type="text" name="fi-sender-firstName" placeholder="First Name" required />
+    <input type="text" name="fi-sender-lastName" placeholder="Last Name" required />
+  </div>
 
-  <label>Email</label>
-  <input type="email" name="email" required>
+  <input type="email" name="fi-sender-email" placeholder="Email Address" required />
 
-  <label>Dog Name & Breed</label>
-  <input type="text" name="dog_info" required>
+  <input type="tel" name="fi-sender-phone" placeholder="Phone (+12025550123)" required />
 
-  <label>Dog Age</label>
-  <input type="number" name="dog_age" min="0" placeholder="Years" required>
+  <input type="text" name="fi-text-dogname" placeholder="Dog's Name" required />
 
-  <label>Medications</label>
-  <textarea name="medications" rows="2" placeholder="List any medications your dog is taking"></textarea>
-
-  <label>Special Diet</label>
-  <textarea name="special_diet" rows="2" placeholder="Describe any dietary needs or restrictions"></textarea>
-
-  <label>How urgent is the situation?</label>
-  <select name="urgency" required>
+  <!-- URGENCY -->
+  <label>Urgency Level</label>
+  <select name="fi-select-urgency" required>
     <option value="">Select urgency</option>
     <option value="Immediate">Immediate</option>
-    <option value="Today">Today</option>
-    <option value="Soon">Soon</option>
+    <option value="Tomorrow">Tomorrow</option>
+    <option value="Coming Up">Coming Up</option>
   </select>
 
-  <label>Upload Dog Photo <small>(optional)</small></label>
-  <input type="file" name="dog_photo" accept="image/*">
+  <!-- MEDICAL -->
+  <label>Medical History / Special Diet / Medications</label>
+  <textarea 
+    name="fi-text-medical" 
+    placeholder="Allergies, medications, feeding schedule, special care, etc."
+    rows="4"
+  ></textarea>
 
+  <!-- NOTES -->
   <label>Additional Details</label>
-  <textarea name="details" rows="4" placeholder="Anything else we should know"></textarea>
+  <textarea 
+    name="fi-text-notes" 
+    placeholder="Tell us what’s happening..."
+    rows="4"
+    required
+  ></textarea>
 
-  <button type="submit">Submit Request</button>
+  <!-- PHOTO -->
+  <label>Upload Dog Photo</label>
+  <input type="file" name="fi-file-dogphoto" accept="image/*" />
+
+  <button type="submit">Request Help</button>
 </form>
+
+<p id="form-result"></p>
 
 </section>
 
@@ -287,6 +295,33 @@
 
   setInterval(nextSlide, 3500);
   showSlide(currentSlide);
+</script>
+<script src="https://forminit.com/sdk/v1/forminit.js"></script>
+
+<script>
+  const forminit = new Forminit();
+  const FORM_ID = 'd39d85bsyma';
+
+  const form = document.getElementById('intake-form');
+
+  form.addEventListener('submit', async function(event) {
+    event.preventDefault();
+
+    const result = document.getElementById('form-result');
+    result.textContent = 'Sending...';
+
+    const formData = new FormData(form);
+
+    const { data, redirectUrl, error } = await forminit.submit(FORM_ID, formData);
+
+    if (error) {
+      result.textContent = error.message || 'Submission failed.';
+      return;
+    }
+
+    result.textContent = '✅ Request sent successfully. We will contact you shortly.';
+    form.reset();
+  });
 </script>
 
 </body>
