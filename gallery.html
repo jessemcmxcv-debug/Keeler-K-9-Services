@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Gallery | Keeler K-9 Services</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+:root {
+  --primary: #0E0F13;
+  --accent: #E87C22;
+  --highlight: #EFE3C8;
+  --support: #C98B4B;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: var(--primary);
+  color: var(--highlight);
+}
+
+header {
+  background: linear-gradient(to bottom, #14151a, #0E0F13);
+  padding: 90px 20px 40px;
+  position: relative;
+  text-align: center;
+}
+
+.logo {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  height: 300px;
+}
+
+@media (max-width: 600px) {
+  .logo {
+    left: 50%;
+    transform: translateX(-50%);
+    height: 45px;
+  }
+}
+
+.nav {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+.menu-btn {
+  background: var(--accent);
+  border: none;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.menu {
+  display: none;
+  position: absolute;
+  right: 0;
+  margin-top: 10px;
+  background: #121318;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.menu a {
+  display: block;
+  padding: 12px 18px;
+  color: var(--highlight);
+  text-decoration: none;
+}
+
+.menu a:hover {
+  background: var(--support);
+}
+
+main {
+  max-width: 1100px;
+  margin: auto;
+  padding: 40px 20px;
+}
+
+/* ===== GALLERY ===== */
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.dog-card {
+  background: #14151a;
+  border-radius: 14px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform .2s;
+}
+
+.dog-card:hover {
+  transform: scale(1.03);
+}
+
+.dog-card img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+}
+
+.dog-card h3 {
+  text-align: center;
+  padding: 10px;
+}
+
+.dog-gallery {
+  display: none;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 10px;
+  padding: 12px;
+}
+
+.dog-gallery img {
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+footer {
+  text-align: center;
+  padding: 30px;
+  color: #aaa;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <img src="kk9logo.png" class="logo">
+
+  <nav class="nav">
+    <button class="menu-btn" id="menuToggle">☰ Menu</button>
+    <div class="menu" id="menu">
+      <a href="index.html">Home</a>
+      <a href="about.html">About Us</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="testimonies1.html">Testimonies</a>
+      <a href="mission1.html">Our Mission</a>
+    </div>
+  </nav>
+
+  <h1>Keeler K-9 Services</h1>
+  <p>Our Dogs In Care</p>
+</header>
+
+<main>
+  <div class="gallery-grid">
+
+    <!-- DOG 1 -->
+    <div class="dog-card" onclick="toggleDog(this)">
+      <img src="angel1.jpeg">
+      <h3>Angel</h3>
+      <div class="dog-gallery">
+        <img src="angel2.jpeg">
+        <img src="angel3.jpeg">
+        <img src="dogs/dog1-3.jpg">
+      </div>
+    </div>
+
+    <!-- DOG 2 -->
+    <div class="dog-card" onclick="toggleDog(this)">
+      <img src="dogs/dog2-main.jpg">
+      <h3>Luna</h3>
+      <div class="dog-gallery">
+        <img src="dogs/dog2-1.jpg">
+        <img src="dogs/dog2-2.jpg">
+        <img src="dogs/dog2-3.jpg">
+      </div>
+    </div>
+
+    <!-- DOG 3 -->
+    <div class="dog-card" onclick="toggleDog(this)">
+      <img src="dogs/dog3-main.jpg">
+      <h3>Buddy</h3>
+      <div class="dog-gallery">
+        <img src="dogs/dog3-1.jpg">
+        <img src="dogs/dog3-2.jpg">
+        <img src="dogs/dog3-3.jpg">
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<footer>
+  © 2026 Keeler K-9 Services
+</footer>
+
+<script>
+const menuBtn = document.getElementById('menuToggle');
+const menu = document.getElementById('menu');
+
+menuBtn.onclick = () => {
+  menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+};
+
+document.addEventListener('click', e => {
+  if (!menu.contains(e.target) && !menuBtn.contains(e.target)) {
+    menu.style.display = 'none';
+  }
+});
+
+function toggleDog(card) {
+  const gallery = card.querySelector('.dog-gallery');
+  gallery.style.display = gallery.style.display === 'grid' ? 'none' : 'grid';
+}
+</script>
+
+</body>
+</html>
