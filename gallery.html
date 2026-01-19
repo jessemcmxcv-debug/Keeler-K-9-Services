@@ -366,28 +366,6 @@ footer {
 <script>
 document.addEventListener('DOMContentLoaded', () => {
 
-  const menuBtn = document.getElementById('menuToggle');
-  const menu = document.getElementById('menu');
-
-  menuBtn.onclick = () => {
-    menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
-  };
-
-  document.addEventListener('click', e => {
-    if (!menu.contains(e.target) && !menuBtn.contains(e.target)) {
-      menu.style.display = 'none';
-    }
-  });
-
-  window.toggleDog = function(card) {
-    document.querySelectorAll('.dog-card').forEach(c => {
-      if (c !== card) c.classList.remove('active');
-    });
-    card.classList.toggle('active');
-  };
-  <script>
-document.addEventListener('DOMContentLoaded', () => {
-
   // ===== MENU =====
   const menuBtn = document.getElementById('menuToggle');
   const menu = document.getElementById('menu');
@@ -475,9 +453,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 });
 </script>
-
-
-
 
 </body>
 </html>
