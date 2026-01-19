@@ -333,59 +333,59 @@ footer {
   © 2026 Keeler K-9 Services
 </footer>
 
-<script>
-const menuBtn = document.getElementById('menuToggle');
-const menu = document.getElementById('menu');
-
-menuBtn.onclick = () => {
-  menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
-};
-
-document.addEventListener('click', e => {
-  if (!menu.contains(e.target) && !menuBtn.contains(e.target)) {
-    menu.style.display = 'none';
-  }
-});
-
-function toggleDog(card) {
-  document.querySelectorAll('.dog-card').forEach(c => {
-    if (c !== card) {
-      c.classList.remove('active');
-    }
-  });
-
-  card.classList.toggle('active');
-}
-
-  const lightbox = document.getElementById('lightbox');
-const lightboxImg = document.getElementById('lightbox-img');
-const lightboxClose = document.getElementById('lightbox-close');
-
-document.querySelectorAll('.dog-card img').forEach(img => {
-  img.addEventListener('click', e => {
-    e.stopPropagation();
-    lightbox.style.display = 'flex';
-    lightboxImg.src = img.src;
-  });
-});
-
-lightboxClose.onclick = () => {
-  lightbox.style.display = 'none';
-};
-
-lightbox.onclick = e => {
-  if (e.target === lightbox) {
-    lightbox.style.display = 'none';
-  }
-};
-
-  
-</script>
-
-  <div id="lightbox">
+ <div id="lightbox">
   <span id="lightbox-close">×</span>
   <img id="lightbox-img">
 </div>
+  
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+
+  const menuBtn = document.getElementById('menuToggle');
+  const menu = document.getElementById('menu');
+
+  menuBtn.onclick = () => {
+    menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+  };
+
+  document.addEventListener('click', e => {
+    if (!menu.contains(e.target) && !menuBtn.contains(e.target)) {
+      menu.style.display = 'none';
+    }
+  });
+
+  window.toggleDog = function(card) {
+    document.querySelectorAll('.dog-card').forEach(c => {
+      if (c !== card) c.classList.remove('active');
+    });
+    card.classList.toggle('active');
+  };
+
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightbox-img');
+  const lightboxClose = document.getElementById('lightbox-close');
+
+  document.querySelectorAll('.dog-card img').forEach(img => {
+    img.addEventListener('click', e => {
+      e.stopPropagation();
+      lightbox.style.display = 'flex';
+      lightboxImg.src = img.src;
+    });
+  });
+
+  lightboxClose.onclick = () => {
+    lightbox.style.display = 'none';
+  };
+
+  lightbox.onclick = e => {
+    if (e.target === lightbox) {
+      lightbox.style.display = 'none';
+    }
+  };
+
+});
+</script>
+
 
 
 </body>
