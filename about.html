@@ -19,6 +19,14 @@
       color: var(--highlight);
       text-align: center;
     }
+    
+    .image-caption {
+  text-align: center;
+  font-size: .9rem;
+  opacity: .7;
+  margin-top: 8px;
+}
+
 
     header {
       background: linear-gradient(to bottom, #14151a, #0E0F13);
@@ -34,11 +42,27 @@
       height: 300px;
     }
 
+    .about-image-wrap {
+  margin-top: 30px;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.about-image-wrap img {
+  width: 100%;
+  height: 420px;
+  object-fit: cover;
+  display: block;
+}
+
     @media (max-width: 600px) {
       .logo {
         left: 50%;
         transform: translateX(-50%);
         height: 150px;
+        .about-image-wrap img {
+    height: 260px;
+  }
       }
     }
 
@@ -105,7 +129,12 @@
   <main>
   <h3>About Us</h3>
   <p class="center-text">Keeler K-9 Services was created to make sure no dog is left behind when life takes an unexpected turn. We specialize in providing safe, temporary housing and responsible rehousing for dogs whose owners are suddenly unable to care for them due to arrest, hospitalization, or emergency situations. Our mission is simple: protect the bond between people and their pets while ensuring every dog receives stability, proper care, and compassion during difficult moments. With a network of trusted caregivers and a focus on transparency and dignity, Keeler K-9 Services exists to give both owners and their dogs peace of mind when it matters most.</p>
-</main>
+<div class="about-image-wrap">
+  <img src="dad1.jpg" alt="Keeler K-9 Services">
+</div>
+    <p class="image-caption">The founder, David Keeler and Red, one of his many rescues.</p>
+  </main>
+  
 <script>
   const menuBtn = document.getElementById('menuToggle');
   const menu = document.getElementById('menu');
