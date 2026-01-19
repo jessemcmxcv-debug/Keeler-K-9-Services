@@ -136,6 +136,25 @@ footer {
   padding: 30px;
   color: #aaa;
 }
+
+.dog-expand {
+  display: none;
+  padding: 12px;
+}
+
+.dog-card.active .dog-expand {
+  display: block;
+}
+
+.dog-story {
+  color: var(--highlight);
+  font-size: .95rem;
+  line-height: 1.6;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+
 </style>
 </head>
 
@@ -161,47 +180,73 @@ footer {
 <main>
   <div class="gallery-grid">
 
-    <!-- DOG 1 -->
-    <div class="dog-card" onclick="toggleDog(this)">
+    <!-- DOG1 -->
+<div class="dog-card" onclick="toggleDog(this)">
+  <img src="angel1.jpeg">
+  <h3>Angel</h3>
+
+  <div class="dog-expand">
+    <p class="dog-story">
+      Angel was born into Keeler K-9 services after her mom(Emily) and dad(Duke) were rescued, unbeknownst that Emily was already pregnant. A couple weeks went by and she had her litter, and we named her Angel due to the white, angel wing like spot on her chest. At that moment in time she was the exact Angel i needed.
+    </p>
+    <div class="dog-gallery">
+      <img src="angel2.jpeg">
+      <img src="angel3.jpeg">
       <img src="angel1.jpeg">
-      <h3>Angel</h3>
-      <div class="dog-gallery">
-        <img src="angel2.jpeg">
-        <img src="angel3.jpeg">
-        <img src="angel1.jpeg">
-      </div>
     </div>
+  </div>
+</div>
 
-    <!-- DOG 2 -->
-    <div class="dog-card" onclick="toggleDog(this)">
-      <img src="snow1.jpg">
-      <h3>Snow</h3>
-      <div class="dog-gallery">
-        <img src="snow1.jpg">
-        <img src="snow2.jpg">
-      </div>
-    </div>
+    <!-- DOG2 -->
+<div class="dog-card" onclick="toggleDog(this)">
+  <img src="snow1.jpeg">
+  <h3>Snow</h3>
+  <div class="dog-expand">
+    <p class="dog-story">
+     Snow was an amazing dog with a huge personality. Unfortunately, she was overcome with cancer. But not without giving cancer a fight for its money. The vet gave her a couple weeks to live, but with non-traditional herbal remedies and RSO(Rick Simpson Oil), she pushed on and lived multiple months longer. She loved playing in the Snow, hence her name.
+    </p>
 
-    <!-- dog 3 -->
-   <div class="dog-card" onclick="toggleDog(this)">
-      <img src="jax1.jpg">
-      <h3>Jaxson</h3>
-      <div class="dog-gallery">
-        <img src="jax1.jpg">
-        <img src="jax2.jpg">
-        <img src="jax3.jpg">
-        <img src="jax4.jpg>
-      </div>
+    <div class="dog-gallery">
+      <img src="snow2.jpeg">
+      <img src="snow1.jpeg">
     </div>
+  </div>
+</div>
+    
+<!-- DOG3 -->
+<div class="dog-card" onclick="toggleDog(this)">
+  <img src="jax1.jpeg">
+  <h3>Jaxson</h3>
 
-      <!-- Duke -- >
-    <div class="dog-card" onclick="toggleDog(this)">
-      <img src="duke1.jpg">
-      <h3>Duke</h3>
-      <div class="dog-gallery">
-        <img src="duke1.jpg">
-       
+  <div class="dog-expand">
+    <p class="dog-story">
+      Jaxson was a very well behaved puppy. He loved being around children, family and receiving cuddles.
+    </p>
+
+    <div class="dog-gallery">
+      <img src="jax1.jpeg">
+      <img src="jax2.jpeg">
+      <img src="jax3.jpeg">
+      <img src="jax4.jpeg">
     </div>
+  </div>
+</div>
+   
+   <!-- DOG4 -->
+<div class="dog-card" onclick="toggleDog(this)">
+  <img src="duke1.jpeg">
+  <h3>Duke</h3>
+
+  <div class="dog-expand">
+    <p class="dog-story">
+      Duke, father of Angel, was a big ol cuddler. Dont let his size fuel ya, he behaved more like a lap dog. 
+    </p>
+
+    <div class="dog-gallery">
+      <img src="duke1.jpeg">
+    </div>
+  </div>
+</div> 
           
   </div>
 </main>
@@ -224,22 +269,17 @@ document.addEventListener('click', e => {
   }
 });
 
-  <script>
 function toggleDog(card) {
-  // Close all other open galleries
   document.querySelectorAll('.dog-card').forEach(c => {
     if (c !== card) {
       c.classList.remove('active');
     }
   });
 
-  // Toggle only the clicked one
   card.classList.toggle('active');
 }
 </script>
-  
-}
-</script>
+
 
 </body>
 </html>
