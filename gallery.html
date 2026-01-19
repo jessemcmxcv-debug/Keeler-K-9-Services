@@ -389,32 +389,50 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   // ===== LIGHTBOX =====
-  let currentImages = [];
-  let currentIndex = 0;
+let currentImages = [];
+let currentIndex = 0;
 
-  const lightbox = document.getElementById('lightbox');
-  const lightboxImg = document.getElementById('lightbox-img');
-  const lightboxClose = document.getElementById('lightbox-close');
-  const lightboxNext = document.getElementById('lightbox-next');
-  const lightboxPrev = document.getElementById('lightbox-prev');
+const lightbox = document.getElementById('lightbox');
+const lightboxImg = document.getElementById('lightbox-img');
+const lightboxClose = document.getElementById('lightbox-close');
+const lightboxNext = document.getElementById('lightbox-next');
+const lightboxPrev = document.getElementById('lightbox-prev');
 
-  document.querySelectorAll('.dog-card img').forEach(img => {
+document.querySelectorAll('.dog-card img').forEach(img => {
   img.addEventListener('click', e => {
     e.stopPropagation();
-    toggleDog(card);
 
     const card = img.closest('.dog-card');
-    toggleDog(card);
+    card.classList.add('active');
 
-    const imgs = card.querySelectorAll('img');
+    const imgs = card.querySelectorAll('.dog-gallery img, > img');
     currentImages = [...imgs].map(i => i.src);
     currentIndex = currentImages.indexOf(img.src);
+
     if (currentIndex < 0) currentIndex = 0;
 
-    showImage();
+    lightboxImg.src = currentImages[currentIndex];
     lightbox.style.display = 'flex';
   });
 });
+
+lightboxNext.onclick = () => {
+  currentIndex = (currentIndex + 1) % currentImages.length;
+  lightboxImg.src = currentImages[currentIndex];
+};
+
+lightboxPrev.onclick = () => {
+  currentIndex = (currentIndex - 1 + currentImages.length) % currentImages.length;
+  lightboxImg.src = currentImages[currentIndex];
+};
+
+lightboxClose.onclick = () => {
+  lightbox.style.display = 'none';
+};
+
+lightbox.onclick = e => {
+  if (e.target === lightbox) lightbox.style.display = 'none';
+};
 
 
   function showImage() {
