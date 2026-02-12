@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Dog Walking | Keeler K-9 Services</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+:root {
+  --primary: #0E0F13;
+  --accent: #E87C22;
+  --highlight: #EFE3C8;
+  --support: #C98B4B;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: var(--primary);
+  color: var(--highlight);
+}
+
+header {
+  background: linear-gradient(to bottom, #14151a, #0E0F13);
+  padding: 90px 20px 40px;
+  position: relative;
+  text-align: center;
+}
+
+.logo {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  height: 80px;
+}
+
+.bottom-logo {
+  height: 70px;
+  margin-top: 20px;
+}
+
+@media (max-width:600px) {
+  .logo {
+    left: 50%;
+    transform: translateX(-50%);
+    height: 50px;
+  }
+}
+
+.nav {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+.menu-btn {
+  background: var(--accent);
+  border: none;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.menu {
+  display: none;
+  position: absolute;
+  right: 0;
+  margin-top: 10px;
+  background: #121318;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.menu a {
+  display: block;
+  padding: 12px 18px;
+  color: var(--highlight);
+  text-decoration: none;
+}
+
+.menu a:hover {
+  background: var(--support);
+}
+
+main {
+  max-width: 900px;
+  margin: auto;
+  padding: 40px 20px;
+}
+
+/* ===== FORM ===== */
+
+.form-box {
+  background: #14151a;
+  padding: 30px;
+  border-radius: 16px;
+}
+
+.form-box h2 {
+  text-align: center;
+  color: var(--accent);
+}
+
+.form-group {
+  margin-bottom: 16px;
+}
+
+label {
+  display: block;
+  margin-bottom: 6px;
+}
+
+input, select {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+}
+
+button {
+  background: var(--accent);
+  border: none;
+  padding: 14px;
+  width: 100%;
+  border-radius: 10px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+footer {
+  text-align: center;
+  padding: 30px;
+  color: #aaa;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <img src="kk9logo5.png" class="logo">
+
+  <nav class="nav">
+    <button class="menu-btn" id="menuToggle">☰ Menu</button>
+    <div class="menu" id="menu">
+      <a href="index.html">Home</a>
+      <a href="about.html">About Us</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="testimonies1.html">Testimonies</a>
+      <a href="mission1.html">Our Mission</a>
+    </div>
+  </nav>
+
+  <h1>Dog Walking Services</h1>
+  <p>Professional, Reliable Walks Across the GTA</p>
+</header>
+
+<main>
+
+  <p style="text-align:center; line-height:1.7;">
+    Keeler K-9 Services offers trusted, affordable dog walking throughout the GTA.  
+    Whether you're busy, working long hours, or just need an extra helping hand, we make sure your dog gets safe, structured, and enjoyable walks.  
+    Our pricing is moderate and flexible, and every dog is treated like family.
+  </p>
+
+  <div class="form-box">
+    <h2>Register For Dog Walking</h2>
+
+    <form>
+
+      <div class="form-group">
+        <label>Owner Name</label>
+        <input type="text" required>
+      </div>
+
+      <div class="form-group">
+        <label>Dog Name</label>
+        <input type="text" required>
+      </div>
+
+      <div class="form-group">
+        <label>Dog Breed</label>
+        <input type="text">
+      </div>
+
+      <div class="form-group">
+        <label>Dog Age</label>
+        <input type="number">
+      </div>
+
+      <div class="form-group">
+        <label>Friendly With Other Dogs?</label>
+        <select>
+          <option>Yes</option>
+          <option>No</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Walk Frequency</label>
+        <select>
+          <option>Daily</option>
+          <option>Once Daily</option>
+          <option>Twice Daily</option>
+        </select>
+      </div>
+
+      <button type="submit">Submit Registration</button>
+
+    </form>
+  </div>
+
+</main>
+
+<footer>
+  <img src="kk9logo5.png" class="bottom-logo">
+  <p>© 2026 Keeler K-9 Services</p>
+</footer>
+
+<script>
+const menuBtn = document.getElementById('menuToggle');
+const menu = document.getElementById('menu');
+
+menuBtn.onclick = () => {
+  menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+};
+
+document.addEventListener('click', e => {
+  if (!menu.contains(e.target) && !menuBtn.contains(e.target)) {
+    menu.style.display = 'none';
+  }
+});
+</script>
+
+</body>
+</html>
