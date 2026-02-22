@@ -20,6 +20,19 @@ body {
   color: var(--highlight);
 }
 
+  .logo-link {
+  display: inline-block;
+  cursor: pointer;
+}
+
+.logo-link img {
+  transition: transform 0.2s ease;
+}
+
+.logo-link img:hover {
+  transform: scale(1.05);
+}
+  
 header {
   background: linear-gradient(to bottom, #14151a, #0E0F13);
   padding: 90px 20px 40px;
@@ -176,7 +189,9 @@ footer {
 <body>
 
 <header>
-  <img src="kk9logo5.png" class="logo">
+  <a href="index.html" class="logo-link">
+    <img src="kk9logo5.png" class="logo" alt="Keeler K-9 Services Logo">
+  </a>
 
   <nav class="nav">
     <button class="menu-btn" id="menuToggle">☰ Menu</button>
