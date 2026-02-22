@@ -66,6 +66,19 @@
   display: block;
 }
 
+    .logo-link {
+  display: inline-block;
+  cursor: pointer;
+}
+
+.logo-link img {
+  transition: transform 0.2s ease;
+}
+
+.logo-link img:hover {
+  transform: scale(1.05);
+}
+
     @media (max-width: 600px) {
       .logo {
         left: 50%;
@@ -122,8 +135,11 @@
   </style>
 </head>
 <body>
+
   <header>
-  <img src="kk9logo5.png" class="logo">
+  <a href="index.html" class="logo-link">
+    <img src="kk9logo5.png" class="logo" alt="Keeler K-9 Services Logo">
+  </a>
 
   <nav class="nav">
     <button class="menu-btn" id="menuToggle">☰ Menu</button>
