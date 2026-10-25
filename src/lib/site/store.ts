@@ -13,6 +13,7 @@ type State = {
   removeDog: (id: string) => void;
   setTestimonials: (items: Testimonial[]) => void;
   publish: () => void;
+  applyServerPublished: (snapshot: Snapshot) => void;
   discardDraft: () => void;
   resetDraftToOriginal: () => void;
   addIntake: (item: Intake) => void;
@@ -42,6 +43,16 @@ export const useSiteStore = create<State>()(
         set((s) => ({ draft: { ...s.draft, dogs: s.draft.dogs.filter((d) => d.id !== id) } })),
       setTestimonials: (testimonials) => set((s) => ({ draft: { ...s.draft, testimonials } })),
       publish: () => set((s) => ({ published: cloneSnap(s.draft) })),
+      applyServerPublished: (snapshot) =>
+        set((s) => {
+          const incoming = cloneSnap(snapshot);
+          // If the local draft had no unpublished edits, keep it in step with
+          // what is live so Owner tools never shows stale content as current.
+          const draftClean = JSON.stringify(s.draft) === JSON.stringify(s.published);
+          return draftClean
+            ? { published: incoming, draft: cloneSnap(snapshot) }
+            : { published: incoming };
+        }),
       discardDraft: () => set((s) => ({ draft: cloneSnap(s.published) })),
       resetDraftToOriginal: () => set(() => ({ draft: createSeed() })),
       addIntake: (item) => set((s) => ({ intakes: [item, ...s.intakes] })),

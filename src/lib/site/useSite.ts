@@ -1,4 +1,5 @@
 import { useEffect, useSyncExternalStore } from "react";
+import { fetchLiveSnapshot } from "./liveContent";
 import { useSiteStore } from "./store";
 import type { Dog, Photo, Snapshot } from "./types";
 
@@ -25,7 +26,13 @@ export function setPreviewMode(on: boolean) {
 
 export function useHydrateSite() {
   useEffect(() => {
-    void useSiteStore.persist.rehydrate();
+    void (async () => {
+      await useSiteStore.persist.rehydrate();
+      // The live snapshot (published from Owner tools) wins over whatever a
+      // returning visitor's browser saved earlier.
+      const live = await fetchLiveSnapshot();
+      if (live) useSiteStore.getState().applyServerPublished(live);
+    })();
   }, []);
 }
 
