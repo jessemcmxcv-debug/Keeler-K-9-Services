@@ -30,9 +30,8 @@ function PrivacyPage() {
           information you are not comfortable sharing for that purpose.
         </p>
         <p className="prose">
-          This website is a preview. A form submitted here is saved in Owner tools on this device. It is not emailed
-          yet{copy.email ? "" : ", because a business email has not been added"}. Before this site replaces the live
-          website, ask how requests will be stored and who can see them.
+          Intake requests sent from this site are delivered to Keeler K9 Services through our form provider
+          (Forminit), the same service the previous website used, so we can respond and arrange care.
         </p>
         <p className="prose">
           To talk to a person, call <a href={`tel:${copy.phoneTel}`}>{copy.phoneDisplay}</a>
