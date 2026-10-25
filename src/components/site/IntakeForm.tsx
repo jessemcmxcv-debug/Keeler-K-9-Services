@@ -1,22 +1,8 @@
 import { useState, type FormEvent } from "react";
-import { Forminit } from "forminit";
+import { submitToForminit, toE164 } from "@/lib/site/forminit";
 import { newId, useSiteStore } from "@/lib/site/store";
 import { useSnapshot } from "@/lib/site/useSite";
 import type { Intake } from "@/lib/site/types";
-
-// Same Forminit form the live keelerk9services.ca site submits to, so intake
-// requests keep arriving in the same Forminit inbox after the switch-over.
-const FORMINIT_FORM_ID = "d39d85bsyma";
-const forminit = new Forminit();
-
-function toE164(raw: string): string {
-  const trimmed = raw.trim();
-  if (trimmed.startsWith("+")) return trimmed;
-  const digits = trimmed.replace(/\D/g, "");
-  if (digits.length === 10) return `+1${digits}`;
-  if (digits.length === 11 && digits.startsWith("1")) return `+${digits}`;
-  return trimmed;
-}
 
 async function fileToDataUrl(file: File): Promise<string> {
   const bitmap = await createImageBitmap(file);
@@ -122,8 +108,7 @@ export function IntakeForm() {
     for (const file of files) payload.append("fi-file-dogphoto[]", file);
 
     try {
-      const { error } = await forminit.submit(FORMINIT_FORM_ID, payload);
-      if (error) throw new Error(error.message || "Submission failed.");
+      await submitToForminit(payload);
       setDone(true);
     } catch {
       setError(
