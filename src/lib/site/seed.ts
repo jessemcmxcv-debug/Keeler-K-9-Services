@@ -20,8 +20,8 @@ function dog(partial: Omit<Dog, "photos" | "coverId"> & { photos: Photo[]; cover
 
 export const defaultCopy: SiteCopy = {
   ownerName: "David Keeler",
-  phoneDisplay: "(744) 688-6441",
-  phoneTel: "+17446886441",
+  phoneDisplay: "(742) 688-6441",
+  phoneTel: "+17426886441",
   email: "info@keelerk9services.ca",
   serviceArea: "North Mississauga / Brampton, Ontario",
   homepageHeadline: "No dogs left behind... even when life gets tough.",
@@ -39,7 +39,7 @@ export const defaultCopy: SiteCopy = {
   mission:
     "At Keeler K9 Services, the mission is to help dogs whose people cannot be there. When an owner is incarcerated, hospitalized, away, or facing another emergency, we step in so the dog is not left without care.\n\nWe arrange temporary housing and, when a dog cannot go home, a responsible new placement. Every dog is different. Health, temperament, and what the dog needs next all matter.\n\nThis is hands-on help for dogs. It is not a paperwork service. If we can take a dog, we say so. If we cannot, we say that too.",
   whatHappensNext:
-    "Call (744) 688-6441 if your dog needs help soon, and send this form so David has the details. He will contact you about your dog. Together you will talk through timing, health, and the safest next step. Sending the form does not guarantee a placement — it starts the conversation. If David cannot answer right away, leave a message and keep your phone nearby.",
+    "Call (742) 688-6441 if your dog needs help soon, and send this form so David has the details. He will contact you about your dog. Together you will talk through timing, health, and the safest next step. Sending the form does not guarantee a placement — it starts the conversation. If David cannot answer right away, leave a message and keep your phone nearby.",
   donationTitle: "Help us cover veterinary care",
   donationBody:
     "Your donation helps provide veterinary care and support for dogs being helped by Keeler K9 Services. Keeler K9 Services is not advertising charitable tax receipts.",
