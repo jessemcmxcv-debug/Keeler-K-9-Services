@@ -1,0 +1,7 @@
+User-agent: *
+Disallow: /
+
+# Preview build. Search engines should not index this copy.
+# The live site remains https://keelerk9services.ca/
+# When this version is approved for launch, change Disallow to only /admin
+# and publish sitemap.xml.
