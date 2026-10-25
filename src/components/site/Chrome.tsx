@@ -14,15 +14,13 @@ const LINKS = [
 
 export function PreviewBanner() {
   const preview = usePreviewMode();
+  if (!preview) return null;
   return (
     <div className="preview-banner" role="status">
-      <strong>Preview only.</strong> These updates are not live on keelerk9services.ca.
-      {preview ? " You are viewing unpublished edits." : ""}
-      {preview && (
-        <button type="button" className="banner-exit" onClick={() => setPreviewMode(false)}>
-          Exit edit preview
-        </button>
-      )}
+      <strong>Edit preview.</strong> You are viewing unpublished edits.
+      <button type="button" className="banner-exit" onClick={() => setPreviewMode(false)}>
+        Exit edit preview
+      </button>
     </div>
   );
 }
