@@ -17,8 +17,8 @@ function NotFound() {
       <h1>That page is not here</h1>
       <p>The link may be old. Keeler K9 Services is still here to help a dog.</p>
       <p>
-        <a className="btn-primary" href="tel:+14378696893">
-          Call (437) 869-6893
+        <a className="btn-primary" href="tel:+17446886441">
+          Call (744) 688-6441
         </a>
       </p>
       <p>
