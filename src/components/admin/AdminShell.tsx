@@ -15,7 +15,7 @@ export function AdminShell({ children }: { children: ReactNode }) {
   return (
     <div className="admin">
       <p className="preview-banner" role="status">
-        <strong>Preview only.</strong> Publishing here does not change keelerk9services.ca.
+        <strong>Owner tools.</strong> Edits here are saved on this device and shown in the edit preview.
       </p>
       <header className="admin-top">
         <Link to="/admin" className="admin-brand">
