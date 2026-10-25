@@ -175,6 +175,14 @@ export default defineConfig(({ command, isPreview }) => ({
             // manifest + head-tag middleware). Nitro v3 defaults serverDir to
             // false, so removing this silently unwires /?install=1 on deploys.
             serverDir: "./server",
+            // Live site content (published from Owner tools) lives in KV.
+            cloudflare: {
+              wrangler: {
+                kv_namespaces: [
+                  { binding: "SITE_KV", id: "dd64f44c61614f9a8f053dcc4a3f3b9c" },
+                ],
+              },
+            },
           }),
         ]
       : []),
