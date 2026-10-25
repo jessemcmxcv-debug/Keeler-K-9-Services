@@ -14,12 +14,12 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "No dogs left behind. Keeler K9 Services helps house and rehome dogs in North Mississauga and Brampton when owners are incarcerated, hospitalized, or unable to care for them. Call (437) 869-6893.",
+          "No dogs left behind. Keeler K9 Services helps house and rehome dogs in North Mississauga and Brampton when owners are incarcerated, hospitalized, or unable to care for them. Call (744) 688-6441.",
       },
       { property: "og:title", content: "Keeler K9 Services" },
       {
         property: "og:description",
-        content: "Emergency dog placement and rehoming in North Mississauga and Brampton. Call (437) 869-6893.",
+        content: "Emergency dog placement and rehoming in North Mississauga and Brampton. Call (744) 688-6441.",
       },
       { property: "og:image", content: "/brand/logo-256.png" },
     ],
