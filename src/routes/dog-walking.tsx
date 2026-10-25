@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState, type FormEvent } from "react";
 import { PublicShell } from "@/components/site/Chrome";
+import { submitToForminit, toE164 } from "@/lib/site/forminit";
 import { newId, useSiteStore } from "@/lib/site/store";
 import { useSnapshot } from "@/lib/site/useSite";
 
@@ -23,9 +24,11 @@ function WalkingPage() {
   const addIntake = useSiteStore((s) => s.addIntake);
   const [done, setDone] = useState(false);
   const [error, setError] = useState("");
+  const [sending, setSending] = useState(false);
 
-  function onSubmit(e: FormEvent<HTMLFormElement>) {
+  async function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    setError("");
     const data = new FormData(e.currentTarget);
     const owner = String(data.get("owner") || "").trim();
     const phone = String(data.get("phone") || "").trim();
@@ -34,31 +37,68 @@ function WalkingPage() {
       setError("Please add your name, phone, and your dog's name.");
       return;
     }
-    addIntake({
-      id: newId(),
-      createdAt: new Date().toISOString(),
-      kind: "walking",
-      status: "new",
-      firstName: owner,
-      lastName: "",
-      phone,
-      email: String(data.get("email") || "").trim(),
-      dogName,
-      dogAge: String(data.get("age") || "").trim(),
-      breed: String(data.get("breed") || "").trim(),
-      reason: "Dog walking request",
-      urgency: "",
-      medical: "",
-      medications: "",
-      diet: "",
-      behaviour: String(data.get("friendly") || ""),
-      notes: "",
-      address: String(data.get("address") || "").trim(),
-      frequency: String(data.get("frequency") || ""),
-      friendly: String(data.get("friendly") || ""),
-      photos: [],
-    });
-    setDone(true);
+    const email = String(data.get("email") || "").trim();
+    const address = String(data.get("address") || "").trim();
+    const age = String(data.get("age") || "").trim();
+    const breed = String(data.get("breed") || "").trim();
+    const friendly = String(data.get("friendly") || "");
+    const frequency = String(data.get("frequency") || "");
+
+    // Keep a copy in Owner tools on this device, as before.
+    try {
+      addIntake({
+        id: newId(),
+        createdAt: new Date().toISOString(),
+        kind: "walking",
+        status: "new",
+        firstName: owner,
+        lastName: "",
+        phone,
+        email,
+        dogName,
+        dogAge: age,
+        breed,
+        reason: "Dog walking request",
+        urgency: "",
+        medical: "",
+        medications: "",
+        diet: "",
+        behaviour: friendly,
+        notes: "",
+        address,
+        frequency,
+        friendly,
+        photos: [],
+      });
+    } catch {
+      // The Forminit send below is what reaches David; a failed local save
+      // should not block it.
+    }
+
+    // Send the request through Forminit, to the same form as the live site.
+    const payload = new FormData();
+    payload.append("fi-sender-fullName", owner);
+    payload.append("fi-sender-phone", toE164(phone));
+    if (email) payload.append("fi-sender-email", email);
+    payload.append("fi-text-requesttype", "Dog walking");
+    payload.append("fi-text-dogname", dogName);
+    if (breed) payload.append("fi-text-breed", breed);
+    if (age) payload.append("fi-text-dogage", age);
+    if (address) payload.append("fi-text-address", address);
+    if (friendly) payload.append("fi-select-friendly", friendly);
+    if (frequency) payload.append("fi-select-frequency", frequency);
+
+    setSending(true);
+    try {
+      await submitToForminit(payload);
+      setDone(true);
+    } catch {
+      setError(
+        "Your request could not be sent just now. It is saved on this device only — please call us so we can help right away.",
+      );
+    } finally {
+      setSending(false);
+    }
   }
 
   return (
@@ -67,12 +107,12 @@ function WalkingPage() {
         <h1>Dog walking</h1>
         <p className="prose">{copy.walkingIntro}</p>
         <p className="prose">
-          Call <a href={`tel:${copy.phoneTel}`}>{copy.phoneDisplay}</a> or send the form. Requests stay in Owner tools on this
-          device until email delivery is set up.
+          Call <a href={`tel:${copy.phoneTel}`}>{copy.phoneDisplay}</a> or send the form and we will get back to you.
         </p>
         {done ? (
           <p className="form-success" role="status">
-            Walking request saved. Please also call {copy.phoneDisplay} if you need a reply soon.
+            Walking request sent. Thank you — we will contact you shortly. Please also call {copy.phoneDisplay} if you
+            need a reply soon.
           </p>
         ) : (
           <form className="intake-form dark-form" onSubmit={onSubmit}>
@@ -125,8 +165,8 @@ function WalkingPage() {
                 {error}
               </p>
             )}
-            <button className="btn-primary" type="submit">
-              Send walking request
+            <button className="btn-primary" type="submit" disabled={sending}>
+              {sending ? "Sending…" : "Send walking request"}
             </button>
           </form>
         )}
