@@ -35,7 +35,6 @@ export const Route = createRootRoute({
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "Keeler K9 Services" },
       { name: "theme-color", content: "#0E0F13" },
-      { name: "robots", content: "noindex, nofollow" },
       {
         name: "description",
         content:
