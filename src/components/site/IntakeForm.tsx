@@ -1,7 +1,22 @@
 import { useState, type FormEvent } from "react";
+import { Forminit } from "forminit";
 import { newId, useSiteStore } from "@/lib/site/store";
 import { useSnapshot } from "@/lib/site/useSite";
 import type { Intake } from "@/lib/site/types";
+
+// Same Forminit form the live keelerk9services.ca site submits to, so intake
+// requests keep arriving in the same Forminit inbox after the switch-over.
+const FORMINIT_FORM_ID = "d39d85bsyma";
+const forminit = new Forminit();
+
+function toE164(raw: string): string {
+  const trimmed = raw.trim();
+  if (trimmed.startsWith("+")) return trimmed;
+  const digits = trimmed.replace(/\D/g, "");
+  if (digits.length === 10) return `+1${digits}`;
+  if (digits.length === 11 && digits.startsWith("1")) return `+${digits}`;
+  return trimmed;
+}
 
 async function fileToDataUrl(file: File): Promise<string> {
   const bitmap = await createImageBitmap(file);
@@ -79,11 +94,41 @@ export function IntakeForm() {
       friendly: "",
       photos,
     };
+    // Keep a copy in Owner tools on this device, as before.
     try {
       addIntake(item);
+    } catch {
+      // The Forminit send below is what reaches David; a failed local save
+      // should not block it.
+    }
+
+    // Send the request to the business through Forminit, using the same form
+    // (and field names) as the live site, so nothing is lost in the switch.
+    const payload = new FormData();
+    payload.append("fi-sender-firstName", item.firstName);
+    payload.append("fi-sender-lastName", item.lastName);
+    if (item.email) payload.append("fi-sender-email", item.email);
+    payload.append("fi-sender-phone", toE164(item.phone));
+    payload.append("fi-text-dogname", item.dogName);
+    if (item.dogAge) payload.append("fi-text-dogage", item.dogAge);
+    if (item.breed) payload.append("fi-text-breed", item.breed);
+    payload.append("fi-text-reason", item.reason);
+    payload.append("fi-select-urgency", item.urgency === "Coming up" ? "Coming Up" : item.urgency);
+    if (item.medical) payload.append("fi-text-medical", item.medical);
+    if (item.medications) payload.append("fi-text-medications", item.medications);
+    if (item.diet) payload.append("fi-text-diet", item.diet);
+    if (item.behaviour) payload.append("fi-text-behaviour", item.behaviour);
+    if (item.notes) payload.append("fi-text-notes", item.notes);
+    for (const file of files) payload.append("fi-file-dogphoto[]", file);
+
+    try {
+      const { error } = await forminit.submit(FORMINIT_FORM_ID, payload);
+      if (error) throw new Error(error.message || "Submission failed.");
       setDone(true);
     } catch {
-      setError("The request could not be saved on this device. Please call instead.");
+      setError(
+        "Your request could not be sent just now. It is saved on this device only — please call us so we can help right away.",
+      );
     } finally {
       setSending(false);
     }
@@ -92,11 +137,8 @@ export function IntakeForm() {
   if (done) {
     return (
       <div className="form-success" role="status">
-        <h3>Request received in this preview</h3>
-        <p>
-          David can see this request in Owner tools on this device. It has not been emailed, because a business email
-          is not set up yet.
-        </p>
+        <h3>Request sent</h3>
+        <p>Thank you — your request has been sent to Keeler K9 Services and we will contact you shortly.</p>
         <p>
           If your dog needs help soon, call <a href={`tel:${copy.phoneTel}`}>{copy.phoneDisplay}</a> now.
         </p>
