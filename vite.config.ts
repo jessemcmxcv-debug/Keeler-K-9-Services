@@ -178,6 +178,11 @@ export default defineConfig(({ command, isPreview }) => ({
             // Live site content (published from Owner tools) lives in KV.
             cloudflare: {
               wrangler: {
+                vars: {
+                  // The site is no longer built with the Grok builder: stop the
+                  // platform middleware injecting its extensions script.
+                  VITE_GROK_EXTENSIONS: "0",
+                },
                 kv_namespaces: [
                   { binding: "SITE_KV", id: "dd64f44c61614f9a8f053dcc4a3f3b9c" },
                 ],
