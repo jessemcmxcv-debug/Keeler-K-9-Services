@@ -145,7 +145,7 @@ export function IntakeForm() {
       </div>
       <label>
         Phone
-        <input name="phone" type="tel" autoComplete="tel" placeholder="(437) 555-0100" required />
+        <input name="phone" type="tel" autoComplete="tel" placeholder="(742) 555-0100" required />
       </label>
       <label>
         Email <span className="optional">optional</span>
