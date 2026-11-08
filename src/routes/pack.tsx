@@ -14,6 +14,7 @@ export const Route = createFileRoute("/pack")({
         content: "Angel, Duke, and Emily — the family story behind Keeler K9 Services.",
       },
     ],
+    links: [{ rel: "canonical", href: "https://keelerk9services.ca/pack" }],
   }),
   component: PackPage,
 });

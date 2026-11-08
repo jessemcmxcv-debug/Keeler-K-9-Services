@@ -11,6 +11,7 @@ export const Route = createFileRoute("/testimonials")({
         content: "Real words from families who have trusted Keeler K9 Services with their dogs.",
       },
     ],
+    links: [{ rel: "canonical", href: "https://keelerk9services.ca/testimonials" }],
   }),
   component: TestimonialsPage,
 });

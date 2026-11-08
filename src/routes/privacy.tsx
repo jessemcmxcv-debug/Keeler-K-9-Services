@@ -11,6 +11,7 @@ export const Route = createFileRoute("/privacy")({
         content: "How Keeler K9 Services uses the information you send about yourself and your dog.",
       },
     ],
+    links: [{ rel: "canonical", href: "https://keelerk9services.ca/privacy" }],
   }),
   component: PrivacyPage,
 });

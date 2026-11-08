@@ -15,6 +15,7 @@ export const Route = createFileRoute("/dog-walking")({
           "Dog walking with Keeler K9 Services in North Mississauga and Brampton. Placement help for dogs in crisis remains the main service.",
       },
     ],
+    links: [{ rel: "canonical", href: "https://keelerk9services.ca/dog-walking" }],
   }),
   component: WalkingPage,
 });

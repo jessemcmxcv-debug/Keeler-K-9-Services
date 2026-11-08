@@ -23,6 +23,7 @@ export const Route = createFileRoute("/")({
       },
       { property: "og:image", content: "/brand/logo-256.png" },
     ],
+    links: [{ rel: "canonical", href: "https://keelerk9services.ca/" }],
   }),
   component: Home,
 });
@@ -51,6 +52,7 @@ function Home() {
     name: "Keeler K9 Services",
     description: copy.homepageLead,
     telephone: copy.phoneTel,
+    email: copy.email,
     areaServed: ["North Mississauga", "Brampton"],
     address: {
       "@type": "PostalAddress",

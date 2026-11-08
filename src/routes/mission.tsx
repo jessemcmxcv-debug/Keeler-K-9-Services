@@ -12,6 +12,7 @@ export const Route = createFileRoute("/mission")({
           "Keeler K9 Services exists so dogs are not left behind when their owners are incarcerated, hospitalized, or unable to care for them.",
       },
     ],
+    links: [{ rel: "canonical", href: "https://keelerk9services.ca/mission" }],
   }),
   component: MissionPage,
 });

@@ -14,6 +14,7 @@ export const Route = createFileRoute("/about")({
           "Keeler K9 Services, run by David Keeler, houses and rehomes dogs in North Mississauga and Brampton when owners cannot care for them.",
       },
     ],
+    links: [{ rel: "canonical", href: "https://keelerk9services.ca/about" }],
   }),
   component: About,
 });

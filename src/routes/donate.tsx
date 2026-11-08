@@ -12,6 +12,7 @@ export const Route = createFileRoute("/donate")({
           "Donations to Keeler K9 Services help pay for veterinary care for dogs who need placement. Tax receipts are not offered.",
       },
     ],
+    links: [{ rel: "canonical", href: "https://keelerk9services.ca/donate" }],
   }),
   component: DonatePage,
 });

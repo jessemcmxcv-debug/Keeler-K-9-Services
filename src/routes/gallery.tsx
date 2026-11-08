@@ -13,6 +13,7 @@ export const Route = createFileRoute("/gallery")({
           "Dogs who have been part of Keeler K9 Services in North Mississauga and Brampton, including dogs looking for placement.",
       },
     ],
+    links: [{ rel: "canonical", href: "https://keelerk9services.ca/gallery" }],
   }),
   component: GalleryPage,
 });
