@@ -30,7 +30,7 @@ function About() {
           </p>
         ))}
         <figure className="founder">
-          <SmartImage photo={founderPhoto} size="full" />
+          <SmartImage photo={founderPhoto} size="full" loading="eager" />
           <figcaption>{copy.aboutCaption}</figcaption>
         </figure>
       </main>
