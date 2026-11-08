@@ -312,6 +312,10 @@ input, textarea, select {
 
 .public-site:has(.dark-page) { background: var(--primary); color: var(--highlight); }
 
+.public-site { display: flex; flex-direction: column; min-height: 100vh; min-height: 100dvh; }
+
+.public-site > #content { flex: 1 0 auto; }
+
 .dark-page h1, .dark-page h2, .dark-page h3 { color: var(--highlight); }
 
 .prose, .dog-story, .pack-block p { line-height: 1.65; }
