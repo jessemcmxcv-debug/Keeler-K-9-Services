@@ -116,7 +116,6 @@ export function SiteFooter() {
       <p className="footer-links">
         <Link to="/privacy">Privacy</Link>
         <Link to="/donate">Veterinary donations</Link>
-        <Link to="/admin">Owner tools</Link>
       </p>
       <p className="footer-copy">© {new Date().getFullYear()} Keeler K9 Services</p>
     </footer>
