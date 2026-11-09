@@ -16,12 +16,6 @@ export const Route = createFileRoute("/")({
         content:
           "No dogs left behind. Keeler K9 Services helps house and rehome dogs in North Mississauga and Brampton when owners are incarcerated, hospitalized, or unable to care for them. Call (742) 688-6441.",
       },
-      { property: "og:title", content: "Keeler K9 Services" },
-      {
-        property: "og:description",
-        content: "Emergency dog placement and rehoming in North Mississauga and Brampton. Call (742) 688-6441.",
-      },
-      { property: "og:image", content: "/brand/logo-256.png" },
     ],
     links: [{ rel: "canonical", href: "https://keelerk9services.ca/" }],
   }),
@@ -67,6 +61,7 @@ function Home() {
   return (
     <PublicShell>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(ld) }} />
+      <main>
       <section className="hero">
         <div className="hero-inner">
           <h1>Keeler K9 Services</h1>
@@ -126,6 +121,7 @@ function Home() {
         </div>
         <IntakeForm />
       </section>
+      </main>
     </PublicShell>
   );
 }

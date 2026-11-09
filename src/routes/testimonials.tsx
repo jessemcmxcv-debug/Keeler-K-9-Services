@@ -8,7 +8,7 @@ export const Route = createFileRoute("/testimonials")({
       { title: "Testimonials | Keeler K9 Services" },
       {
         name: "description",
-        content: "Real words from families who have trusted Keeler K9 Services with their dogs.",
+        content: "Testimonials for Keeler K9 Services in North Mississauga and Brampton. Real stories from families will be posted here as they come in.",
       },
     ],
     links: [{ rel: "canonical", href: "https://keelerk9services.ca/testimonials" }],

@@ -25,20 +25,52 @@ function WalkingPage() {
   const addIntake = useSiteStore((s) => s.addIntake);
   const [done, setDone] = useState(false);
   const [error, setError] = useState("");
+  const [invalidField, setInvalidField] = useState("");
   const [sending, setSending] = useState(false);
+
+  function fieldProps(name: string) {
+    return {
+      "aria-invalid": invalidField === name || undefined,
+      "aria-describedby": invalidField === name ? "walking-error" : undefined,
+    };
+  }
 
   async function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setError("");
-    const data = new FormData(e.currentTarget);
+    const form = e.currentTarget;
+    const data = new FormData(form);
+    setInvalidField("");
+    const fail = (key: string, message: string) => {
+      setError(message);
+      setInvalidField(key);
+      form.querySelector<HTMLElement>(`[name="${key}"]`)?.focus();
+    };
     const owner = String(data.get("owner") || "").trim();
     const phone = String(data.get("phone") || "").trim();
     const dogName = String(data.get("dogName") || "").trim();
-    if (!owner || !phone || !dogName) {
-      setError("Please add your name, phone, and your dog's name.");
+    if (!owner) {
+      fail("owner", "Please add your name.");
+      return;
+    }
+    if (!phone) {
+      fail("phone", "Please add your phone number.");
+      return;
+    }
+    const phoneDigits = phone.replace(/\D/g, "");
+    if (!(phoneDigits.length === 10 || (phoneDigits.length === 11 && phoneDigits.startsWith("1")))) {
+      fail("phone", "Please check the phone number \u2014 it should be 10 digits.");
+      return;
+    }
+    if (!dogName) {
+      fail("dogName", "Please add your dog's name.");
       return;
     }
     const email = String(data.get("email") || "").trim();
+    if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) {
+      fail("email", "Please check the email address \u2014 it looks incomplete.");
+      return;
+    }
     const address = String(data.get("address") || "").trim();
     const age = String(data.get("age") || "").trim();
     const breed = String(data.get("breed") || "").trim();
@@ -116,38 +148,38 @@ function WalkingPage() {
             need a reply soon.
           </p>
         ) : (
-          <form className="intake-form dark-form" onSubmit={onSubmit}>
+          <form className="intake-form dark-form" onSubmit={onSubmit} noValidate>
             <label>
               Your name
-              <input name="owner" required />
+              <input name="owner" autoComplete="name" required {...fieldProps("owner")} />
             </label>
             <label>
               Phone
-              <input name="phone" type="tel" required />
+              <input name="phone" type="tel" autoComplete="tel" required {...fieldProps("phone")} />
             </label>
             <label>
               Email <span className="optional">optional</span>
-              <input name="email" type="email" />
+              <input name="email" type="email" autoComplete="email" {...fieldProps("email")} />
             </label>
             <label>
-              Home address in Mississauga or Brampton
-              <input name="address" autoComplete="street-address" />
+              Home address in Mississauga or Brampton <span className="optional">optional</span>
+              <input name="address" autoComplete="street-address" {...fieldProps("address")} />
             </label>
             <label>
               Dog's name
-              <input name="dogName" required />
+              <input name="dogName" required {...fieldProps("dogName")} />
             </label>
             <label>
               Breed <span className="optional">optional</span>
-              <input name="breed" />
+              <input name="breed" {...fieldProps("breed")} />
             </label>
             <label>
               Age <span className="optional">optional</span>
-              <input name="age" />
+              <input name="age" {...fieldProps("age")} />
             </label>
             <label>
               Friendly with other dogs?
-              <select name="friendly" defaultValue="Not sure">
+              <select name="friendly" defaultValue="Not sure" {...fieldProps("friendly")}>
                 <option>Yes</option>
                 <option>No</option>
                 <option>Not sure</option>
@@ -155,14 +187,14 @@ function WalkingPage() {
             </label>
             <label>
               How often?
-              <select name="frequency" defaultValue="A few times a week">
+              <select name="frequency" defaultValue="A few times a week" {...fieldProps("frequency")}>
                 <option>Once a day</option>
                 <option>Twice a day</option>
                 <option>A few times a week</option>
               </select>
             </label>
             {error && (
-              <p className="form-error" role="alert">
+              <p className="form-error" role="alert" id="walking-error">
                 {error}
               </p>
             )}
