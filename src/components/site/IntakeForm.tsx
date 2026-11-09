@@ -22,14 +22,28 @@ export function IntakeForm() {
   const { copy } = useSnapshot();
   const addIntake = useSiteStore((s) => s.addIntake);
   const [error, setError] = useState("");
+  const [invalidField, setInvalidField] = useState("");
   const [done, setDone] = useState(false);
   const [sending, setSending] = useState(false);
+
+  function fieldProps(name: string) {
+    return {
+      "aria-invalid": invalidField === name || undefined,
+      "aria-describedby": invalidField === name ? "intake-error" : undefined,
+    };
+  }
 
   async function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setError("");
+    setInvalidField("");
     const form = e.currentTarget;
     const data = new FormData(form);
+    const fail = (key: string, message: string) => {
+      setError(message);
+      setInvalidField(key);
+      form.querySelector<HTMLElement>(`[name="${key}"]`)?.focus();
+    };
     const required = [
       ["firstName", "First name"],
       ["lastName", "Last name"],
@@ -40,9 +54,19 @@ export function IntakeForm() {
     ] as const;
     for (const [key, label] of required) {
       if (!String(data.get(key) || "").trim()) {
-        setError(`Please add ${label.toLowerCase()}.`);
+        fail(key, `Please add ${label.toLowerCase()}.`);
         return;
       }
+    }
+    const phoneDigits = String(data.get("phone") || "").replace(/\D/g, "");
+    if (!(phoneDigits.length === 10 || (phoneDigits.length === 11 && phoneDigits.startsWith("1")))) {
+      fail("phone", "Please check the phone number \u2014 it should be 10 digits.");
+      return;
+    }
+    const emailValue = String(data.get("email") || "").trim();
+    if (emailValue && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(emailValue)) {
+      fail("email", "Please check the email address \u2014 it looks incomplete.");
+      return;
     }
     setSending(true);
     const files = (data.getAll("photos") as File[]).filter((f) => f && f.size > 0).slice(0, 4);
@@ -54,6 +78,8 @@ export function IntakeForm() {
     } catch {
       setSending(false);
       setError("One of the photos could not be read. Try a different picture.");
+      setInvalidField("photos");
+      form.querySelector<HTMLElement>('[name="photos"]')?.focus();
       return;
     }
     const item: Intake = {
@@ -136,42 +162,42 @@ export function IntakeForm() {
       <div className="form-row">
         <label>
           First name
-          <input name="firstName" autoComplete="given-name" required />
+          <input name="firstName" {...fieldProps("firstName")} autoComplete="given-name" required />
         </label>
         <label>
           Last name
-          <input name="lastName" autoComplete="family-name" required />
+          <input name="lastName" {...fieldProps("lastName")} autoComplete="family-name" required />
         </label>
       </div>
       <label>
         Phone
-        <input name="phone" type="tel" autoComplete="tel" placeholder="(742) 555-0100" required />
+        <input name="phone" {...fieldProps("phone")} type="tel" autoComplete="tel" placeholder="(742) 555-0100" required />
       </label>
       <label>
         Email <span className="optional">optional</span>
-        <input name="email" type="email" autoComplete="email" />
+        <input name="email" {...fieldProps("email")} type="email" autoComplete="email" />
       </label>
       <div className="form-row">
         <label>
           Dog's name
-          <input name="dogName" required />
+          <input name="dogName" {...fieldProps("dogName")} required />
         </label>
         <label>
           Dog's age <span className="optional">optional</span>
-          <input name="dogAge" placeholder="Example: 4 years" />
+          <input name="dogAge" {...fieldProps("dogAge")} placeholder="Example: 4 years" />
         </label>
       </div>
       <label>
         Breed or type <span className="optional">optional</span>
-        <input name="breed" placeholder="Example: Lab mix" />
+        <input name="breed" {...fieldProps("breed")} placeholder="Example: Lab mix" />
       </label>
       <label>
         Why does this dog need placement?
-        <textarea name="reason" rows={4} required placeholder="Arrest, hospital, travel, or another reason." />
+        <textarea name="reason" {...fieldProps("reason")} rows={4} required placeholder="Arrest, hospital, travel, or another reason." />
       </label>
       <label>
         Urgency
-        <select name="urgency" required defaultValue="">
+        <select name="urgency" {...fieldProps("urgency")} required defaultValue="">
           <option value="" disabled>
             Select urgency
           </option>
@@ -182,30 +208,30 @@ export function IntakeForm() {
       </label>
       <label>
         Medical history <span className="optional">optional</span>
-        <textarea name="medical" rows={3} placeholder="Injuries, illness, vet care, allergies." />
+        <textarea name="medical" {...fieldProps("medical")} rows={3} placeholder="Injuries, illness, vet care, allergies." />
       </label>
       <label>
         Medications <span className="optional">optional</span>
-        <textarea name="medications" rows={2} placeholder="Name, dose, and when they are given." />
+        <textarea name="medications" {...fieldProps("medications")} rows={2} placeholder="Name, dose, and when they are given." />
       </label>
       <label>
         Special diet <span className="optional">optional</span>
-        <textarea name="diet" rows={2} />
+        <textarea name="diet" {...fieldProps("diet")} rows={2} />
       </label>
       <label>
         Behaviour <span className="optional">optional</span>
-        <textarea name="behaviour" rows={3} placeholder="Kids, other dogs, leash, fears, or anything we should know." />
+        <textarea name="behaviour" {...fieldProps("behaviour")} rows={3} placeholder="Kids, other dogs, leash, fears, or anything we should know." />
       </label>
       <label>
         Anything else <span className="optional">optional</span>
-        <textarea name="notes" rows={3} />
+        <textarea name="notes" {...fieldProps("notes")} rows={3} />
       </label>
       <label>
         Photos of the dog <span className="optional">optional, up to 4</span>
-        <input name="photos" type="file" accept="image/*" multiple />
+        <input name="photos" {...fieldProps("photos")} type="file" accept="image/*" multiple />
       </label>
       {error && (
-        <p className="form-error" role="alert">
+        <p className="form-error" role="alert" id="intake-error">
           {error}
         </p>
       )}

@@ -25,7 +25,7 @@ export function DogGallery({ dogs, heading }: { dogs: Dog[]; heading?: string })
         if (!list.length) return null;
         return (
           <section key={group.key} className="dog-group" aria-labelledby={`group-${group.key}`}>
-            <h3 id={`group-${group.key}`}>{group.title}</h3>
+            <h2 id={`group-${group.key}`}>{group.title}</h2>
             <div className="gallery-grid">
               {list.map((dog, cardIndex) => {
                 const cover = coverOf(dog);
