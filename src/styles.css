@@ -654,3 +654,28 @@ button:disabled { opacity: 0.45; }
   html { scroll-behavior: auto; }
   * { transition: none !important; animation: none !important; }
 }
+
+/* The Proposal page — accordion sections under a hero image */
+.proposal-eyebrow { text-align: center; letter-spacing: 0.14em; text-transform: uppercase; font-size: 0.8rem; font-weight: 700; color: var(--support); margin: 0 0 6px; }
+.proposal-standfirst { text-align: center; font-size: 1.08rem; }
+.proposal-hero { margin: 20px 0 8px; }
+.proposal-hero img, .proposal-hero picture { display: block; width: 100%; border-radius: 16px; }
+.proposal-hero figcaption { text-align: center; opacity: 0.85; margin-top: 8px; font-size: 0.92rem; }
+.proposal-quote { text-align: center; font-size: 1.35rem; font-weight: 700; color: var(--highlight); margin: 22px 0 6px; }
+.proposal-quote cite { display: block; font-size: 0.95rem; font-weight: 500; font-style: normal; opacity: 0.85; margin-top: 4px; }
+.glance-list { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; list-style: none; padding: 0; margin: 16px 0; }
+.glance-list li { border: 1px solid #3a3d47; border-radius: 999px; padding: 6px 12px; font-size: 0.9rem; background: #14151a; }
+.proposal-note { background: #17181d; border-left: 4px solid var(--accent); border-radius: 8px; padding: 12px 14px; line-height: 1.6; }
+.proposal-hint { text-align: center; opacity: 0.85; }
+.proposal-box { background: #14151a; border: 1px solid #26282f; border-radius: 14px; margin: 14px 0; overflow: hidden; }
+.proposal-box-heading { margin: 0; font-size: inherit; }
+.proposal-box-head { display: flex; width: 100%; align-items: center; justify-content: space-between; gap: 12px; background: transparent; border: 0; color: inherit; font: inherit; text-align: left; padding: 16px 18px; cursor: pointer; }
+.proposal-box-title { display: block; font-size: 1.18rem; font-weight: 700; color: var(--highlight); }
+.proposal-box-sub { display: block; font-size: 0.92rem; opacity: 0.78; margin-top: 2px; }
+.proposal-chevron { color: var(--accent); font-size: 1.3rem; line-height: 1; transition: transform 0.2s ease; flex-shrink: 0; }
+.proposal-box.open .proposal-chevron { transform: rotate(180deg); }
+.proposal-body { padding: 2px 18px 18px; border-top: 1px solid #26282f; }
+.proposal-subhead { color: var(--highlight); margin: 18px 0 6px; }
+.proposal-lead { color: var(--highlight); }
+.proposal-list { line-height: 1.65; padding-left: 1.25em; margin: 8px 0; }
+.proposal-list li { margin: 4px 0; }

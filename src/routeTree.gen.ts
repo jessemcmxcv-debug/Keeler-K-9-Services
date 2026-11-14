@@ -18,6 +18,7 @@ import { Route as GalleryRouteImport } from './routes/gallery'
 import { Route as MissionRouteImport } from './routes/mission'
 import { Route as PackRouteImport } from './routes/pack'
 import { Route as PrivacyRouteImport } from './routes/privacy'
+import { Route as ProposalRouteImport } from './routes/proposal'
 import { Route as TestimonialsRouteImport } from './routes/testimonials'
 import { Route as AdminIndexRouteImport } from './routes/admin/index'
 import { Route as AdminContactRouteImport } from './routes/admin/contact'
@@ -73,6 +74,11 @@ const PackRoute = PackRouteImport.update({
 const PrivacyRoute = PrivacyRouteImport.update({
   id: '/privacy',
   path: '/privacy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProposalRoute = ProposalRouteImport.update({
+  id: '/proposal',
+  path: '/proposal',
   getParentRoute: () => rootRouteImport,
 } as any)
 const TestimonialsRoute = TestimonialsRouteImport.update({
@@ -141,6 +147,7 @@ export interface FileRoutesByFullPath {
   '/mission': typeof MissionRoute
   '/pack': typeof PackRoute
   '/privacy': typeof PrivacyRoute
+  '/proposal': typeof ProposalRoute
   '/testimonials': typeof TestimonialsRoute
   '/admin/contact': typeof AdminContactRoute
   '/admin/dogs': typeof AdminDogsRoute
@@ -162,6 +169,7 @@ export interface FileRoutesByTo {
   '/mission': typeof MissionRoute
   '/pack': typeof PackRoute
   '/privacy': typeof PrivacyRoute
+  '/proposal': typeof ProposalRoute
   '/testimonials': typeof TestimonialsRoute
   '/admin/contact': typeof AdminContactRoute
   '/admin/dogs': typeof AdminDogsRoute
@@ -185,6 +193,7 @@ export interface FileRoutesById {
   '/mission': typeof MissionRoute
   '/pack': typeof PackRoute
   '/privacy': typeof PrivacyRoute
+  '/proposal': typeof ProposalRoute
   '/testimonials': typeof TestimonialsRoute
   '/admin/contact': typeof AdminContactRoute
   '/admin/dogs': typeof AdminDogsRoute
@@ -209,6 +218,7 @@ export interface FileRouteTypes {
     | '/mission'
     | '/pack'
     | '/privacy'
+    | '/proposal'
     | '/testimonials'
     | '/admin/contact'
     | '/admin/dogs'
@@ -230,6 +240,7 @@ export interface FileRouteTypes {
     | '/mission'
     | '/pack'
     | '/privacy'
+    | '/proposal'
     | '/testimonials'
     | '/admin/contact'
     | '/admin/dogs'
@@ -252,6 +263,7 @@ export interface FileRouteTypes {
     | '/mission'
     | '/pack'
     | '/privacy'
+    | '/proposal'
     | '/testimonials'
     | '/admin/contact'
     | '/admin/dogs'
@@ -275,6 +287,7 @@ export interface RootRouteChildren {
   MissionRoute: typeof MissionRoute
   PackRoute: typeof PackRoute
   PrivacyRoute: typeof PrivacyRoute
+  ProposalRoute: typeof ProposalRoute
   TestimonialsRoute: typeof TestimonialsRoute
 }
 
@@ -341,6 +354,13 @@ declare module '@tanstack/react-router' {
       path: '/privacy'
       fullPath: '/privacy'
       preLoaderRoute: typeof PrivacyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/proposal': {
+      id: '/proposal'
+      path: '/proposal'
+      fullPath: '/proposal'
+      preLoaderRoute: typeof ProposalRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/testimonials': {
@@ -463,6 +483,7 @@ const rootRouteChildren: RootRouteChildren = {
   MissionRoute: MissionRoute,
   PackRoute: PackRoute,
   PrivacyRoute: PrivacyRoute,
+  ProposalRoute: ProposalRoute,
   TestimonialsRoute: TestimonialsRoute,
 }
 export const routeTree = rootRouteImport
