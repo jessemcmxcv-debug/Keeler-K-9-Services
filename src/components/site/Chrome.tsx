@@ -9,6 +9,7 @@ const LINKS = [
   { to: "/dog-walking", label: "Dog Walking", walking: true },
   { to: "/testimonials", label: "Testimonials" },
   { to: "/mission", label: "Our Mission" },
+  { to: "/proposal", label: "The Proposal" },
   { to: "/donate", label: "Donate", donate: true },
 ] as const;
 
