@@ -26,6 +26,8 @@ const emptyDog = (): Dog => ({
   showInGallery: true,
   showInPack: false,
   packBlurb: "",
+  rehomingReason: "",
+  showOnHomes: false,
   photos: [],
   coverId: "",
 });
@@ -123,6 +125,16 @@ function DogsPage() {
             <textarea rows={5} value={editing.story} onChange={(e) => setEditing({ ...editing, story: e.target.value })} />
           </label>
           <label>
+            Reason for rehoming
+            <span className="field-help">Shown on the Dogs Looking for Homes page, under "Why this dog needs a new home".</span>
+            <textarea
+              rows={3}
+              value={editing.rehomingReason ?? ""}
+              onChange={(e) => setEditing({ ...editing, rehomingReason: e.target.value })}
+              placeholder="Example: His owner moved into care and could not take him."
+            />
+          </label>
+          <label>
             Medical information
             <span className="field-help">Kept in owner tools. It is not shown on the public dog card.</span>
             <textarea rows={3} value={editing.medical} onChange={(e) => setEditing({ ...editing, medical: e.target.value })} />
@@ -171,6 +183,14 @@ function DogsPage() {
               <textarea rows={3} value={editing.packBlurb} onChange={(e) => setEditing({ ...editing, packBlurb: e.target.value })} />
             </label>
           )}
+          <label className="check">
+            <input
+              type="checkbox"
+              checked={editing.showOnHomes ?? false}
+              onChange={(e) => setEditing({ ...editing, showOnHomes: e.target.checked })}
+            />
+            Show this dog on the Dogs Looking for Homes page
+          </label>
           <label>
             Add photos
             <input
