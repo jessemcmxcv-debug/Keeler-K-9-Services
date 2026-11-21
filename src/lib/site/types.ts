@@ -26,6 +26,8 @@ export type Dog = {
   showInGallery: boolean;
   showInPack: boolean;
   packBlurb: string;
+  rehomingReason: string;
+  showOnHomes: boolean;
   photos: Photo[];
   coverId: string;
 };

@@ -86,6 +86,8 @@ export function createSeed(): Snapshot {
       status: "archived",
       showInGallery: true,
       showInPack: true,
+      rehomingReason: "",
+      showOnHomes: false,
       packBlurb:
         "Born into Keeler K9, Angel carries the story of both her parents. Her name came from the white wing-shaped mark on her chest.",
       photos: angelPhotos,
@@ -106,6 +108,8 @@ export function createSeed(): Snapshot {
       status: "archived",
       showInGallery: true,
       showInPack: false,
+      rehomingReason: "",
+      showOnHomes: false,
       packBlurb: "",
       photos: [
         photo("snow-1", "snow-1", "Snow the dog"),
@@ -127,6 +131,8 @@ export function createSeed(): Snapshot {
       status: "archived",
       showInGallery: true,
       showInPack: false,
+      rehomingReason: "",
+      showOnHomes: false,
       packBlurb: "",
       photos: [
         photo("jax-3", "jax-3", "Jaxson the puppy"),
@@ -151,6 +157,8 @@ export function createSeed(): Snapshot {
       status: "archived",
       showInGallery: true,
       showInPack: true,
+      rehomingReason: "",
+      showOnHomes: false,
       packBlurb: "Duke is Angel's father. Big, gentle, and loyal — more lap dog than his size suggests.",
       photos: [photo("duke-1", "duke-1", "Duke, a large dark dog")],
     }),
@@ -169,6 +177,8 @@ export function createSeed(): Snapshot {
       status: "archived",
       showInGallery: true,
       showInPack: true,
+      rehomingReason: "",
+      showOnHomes: false,
       packBlurb: "Emily is Angel's mother. Loving, stubborn, and full of character.",
       photos: [
         photo("emily-1", "emily-1", "Emily the dog"),
@@ -190,6 +200,8 @@ export function createSeed(): Snapshot {
       status: "archived",
       showInGallery: true,
       showInPack: false,
+      rehomingReason: "",
+      showOnHomes: false,
       packBlurb: "",
       photos: [
         photo("kong-1", "kong-1", "King Kong, a very large dog"),
@@ -210,6 +222,8 @@ export function createSeed(): Snapshot {
       status: "archived",
       showInGallery: true,
       showInPack: false,
+      rehomingReason: "",
+      showOnHomes: false,
       packBlurb: "",
       photos: [
         photo("bella-1", "bella-1", "Bella, a black lab"),
