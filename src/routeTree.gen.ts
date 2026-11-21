@@ -15,6 +15,7 @@ import { Route as AdminRouteRouteImport } from './routes/admin/route'
 import { Route as DogWalkingRouteImport } from './routes/dog-walking'
 import { Route as DonateRouteImport } from './routes/donate'
 import { Route as GalleryRouteImport } from './routes/gallery'
+import { Route as LookingForHomesRouteImport } from './routes/looking-for-homes'
 import { Route as MissionRouteImport } from './routes/mission'
 import { Route as PackRouteImport } from './routes/pack'
 import { Route as PrivacyRouteImport } from './routes/privacy'
@@ -59,6 +60,11 @@ const DonateRoute = DonateRouteImport.update({
 const GalleryRoute = GalleryRouteImport.update({
   id: '/gallery',
   path: '/gallery',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LookingForHomesRoute = LookingForHomesRouteImport.update({
+  id: '/looking-for-homes',
+  path: '/looking-for-homes',
   getParentRoute: () => rootRouteImport,
 } as any)
 const MissionRoute = MissionRouteImport.update({
@@ -144,6 +150,7 @@ export interface FileRoutesByFullPath {
   '/dog-walking': typeof DogWalkingRoute
   '/donate': typeof DonateRoute
   '/gallery': typeof GalleryRoute
+  '/looking-for-homes': typeof LookingForHomesRoute
   '/mission': typeof MissionRoute
   '/pack': typeof PackRoute
   '/privacy': typeof PrivacyRoute
@@ -166,6 +173,7 @@ export interface FileRoutesByTo {
   '/dog-walking': typeof DogWalkingRoute
   '/donate': typeof DonateRoute
   '/gallery': typeof GalleryRoute
+  '/looking-for-homes': typeof LookingForHomesRoute
   '/mission': typeof MissionRoute
   '/pack': typeof PackRoute
   '/privacy': typeof PrivacyRoute
@@ -190,6 +198,7 @@ export interface FileRoutesById {
   '/dog-walking': typeof DogWalkingRoute
   '/donate': typeof DonateRoute
   '/gallery': typeof GalleryRoute
+  '/looking-for-homes': typeof LookingForHomesRoute
   '/mission': typeof MissionRoute
   '/pack': typeof PackRoute
   '/privacy': typeof PrivacyRoute
@@ -215,6 +224,7 @@ export interface FileRouteTypes {
     | '/dog-walking'
     | '/donate'
     | '/gallery'
+    | '/looking-for-homes'
     | '/mission'
     | '/pack'
     | '/privacy'
@@ -237,6 +247,7 @@ export interface FileRouteTypes {
     | '/dog-walking'
     | '/donate'
     | '/gallery'
+    | '/looking-for-homes'
     | '/mission'
     | '/pack'
     | '/privacy'
@@ -260,6 +271,7 @@ export interface FileRouteTypes {
     | '/dog-walking'
     | '/donate'
     | '/gallery'
+    | '/looking-for-homes'
     | '/mission'
     | '/pack'
     | '/privacy'
@@ -284,6 +296,7 @@ export interface RootRouteChildren {
   DogWalkingRoute: typeof DogWalkingRoute
   DonateRoute: typeof DonateRoute
   GalleryRoute: typeof GalleryRoute
+  LookingForHomesRoute: typeof LookingForHomesRoute
   MissionRoute: typeof MissionRoute
   PackRoute: typeof PackRoute
   PrivacyRoute: typeof PrivacyRoute
@@ -333,6 +346,13 @@ declare module '@tanstack/react-router' {
       path: '/gallery'
       fullPath: '/gallery'
       preLoaderRoute: typeof GalleryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/looking-for-homes': {
+      id: '/looking-for-homes'
+      path: '/looking-for-homes'
+      fullPath: '/looking-for-homes'
+      preLoaderRoute: typeof LookingForHomesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/mission': {
@@ -480,6 +500,7 @@ const rootRouteChildren: RootRouteChildren = {
   DogWalkingRoute: DogWalkingRoute,
   DonateRoute: DonateRoute,
   GalleryRoute: GalleryRoute,
+  LookingForHomesRoute: LookingForHomesRoute,
   MissionRoute: MissionRoute,
   PackRoute: PackRoute,
   PrivacyRoute: PrivacyRoute,
