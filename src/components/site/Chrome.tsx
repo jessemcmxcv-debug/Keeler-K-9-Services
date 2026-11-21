@@ -6,6 +6,7 @@ const LINKS = [
   { to: "/gallery", label: "Gallery" },
   { to: "/about", label: "About Us" },
   { to: "/pack", label: "The Pack" },
+  { to: "/looking-for-homes", label: "Dogs Looking for Homes" },
   { to: "/dog-walking", label: "Dog Walking", walking: true },
   { to: "/testimonials", label: "Testimonials" },
   { to: "/mission", label: "Our Mission" },
